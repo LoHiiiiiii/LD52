@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using TMPro;
 
 public class MenuController : MonoBehaviour, IInputTarget {
-
-	[SerializeField] InputHandler handler;
-	[SerializeField] GameController gameController;
+	
 	[SerializeField] TMP_Text hiscore;
 	[SerializeField] GameObject[] indicators;
 
-	int index = 0;
-	int lastY = 0;
+	public event Action StartPressed;
+
+	int index;
+	int lastY;
 
 	void OnEnable() {
-		if (index > MaxIndex()) index = MaxIndex();
+		index = 0;
+		lastY = 0;
 		HandleIndicator();
-		handler.SetTarget(this);
 		int score = PlayerPrefs.GetInt("hiscore", 0);
 		if (score > 0) {
 			hiscore.gameObject.SetActive(true);
@@ -54,7 +55,7 @@ public class MenuController : MonoBehaviour, IInputTarget {
 	void Press(int index) {
 		switch (index) {
 			case 0:
-				gameController.BeginGame();
+				StartPressed?.Invoke();
 				break;
 			case 1:
 				Application.Quit();

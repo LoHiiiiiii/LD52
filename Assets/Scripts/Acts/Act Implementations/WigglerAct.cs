@@ -41,13 +41,11 @@ public class WigglerAct : Act {
 		this.Finish = Finish;
 		startTime = Time.time;
 		active = true;
-		Debug.Log("Begin");
 	}
 
 	public override void EndAct() {
 		active = false;
 		gameObject.SetActive(false);
-		Debug.Log("End");
 	}
 
 	void Update() {

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 436442341769722822}
   - component: {fileID: 436442341769722823}
-  - component: {fileID: 436442341769722820}
   - component: {fileID: 6019397279132740686}
+  - component: {fileID: 436442341769722820}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -50,18 +50,6 @@ MonoBehaviour:
   actRepeatGap: 0
   allActs:
   - {fileID: 8793456507368232698}
---- !u!114 &436442341769722820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436442341769722821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9aeaa6ff5cd3e914fa48888b7db22144, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6019397279132740686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,10 +62,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ac81f44e2480e4481dc318f1f820aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  handler: {fileID: 436442341769722820}
   menu: {fileID: 0}
   actManager: {fileID: 436442341769722823}
   swap: {fileID: 0}
   maxLives: 3
+--- !u!114 &436442341769722820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436442341769722821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aeaa6ff5cd3e914fa48888b7db22144, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8644204314423793853
 PrefabInstance:
   m_ObjectHideFlags: 0

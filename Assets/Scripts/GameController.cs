@@ -4,21 +4,38 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour {
 
+	[SerializeField] InputHandler handler;
 	[SerializeField] MenuController menu;
 	[SerializeField] ActManager actManager;
 	[SerializeField] SwapController swap;
 	[SerializeField] int maxLives;
 
-	int score = 0;
+	int score;
 	int lives;
 
+	private void Awake() {
+		Camera.main.orthographicSize = Camera.main.orthographicSize * Mathf.Max(1, (1920f/1080f) / Camera.main.aspect);
+	}
+
 	public void Start() {
+		menu.StartPressed += BeginGame;
+		GotoMenu();
+	}
+
+	void GotoMenu() {
 		swap.SwapRandom();
+		menu.gameObject.SetActive(true);
+		handler.SetTarget(menu);
 	}
 
 	public void BeginGame() {
+		score = 0;
 		lives = maxLives;
 		menu.gameObject.SetActive(false);
+		GotoNextAct();
+	}
+
+	void GotoNextAct() {
 		swap.SwapRandom();
 		actManager.StartAct(score, ActFinished);
 	}
@@ -28,21 +45,19 @@ public class GameController : MonoBehaviour {
 			PlayerPrefs.SetInt("hiscore", score);
 		}
 		score = 0;
-		swap.SwapRandom();
-		menu.gameObject.SetActive(true);
+		GotoMenu();
 	}
 
 	public void ActFinished(bool succesful) {
-		swap.SwapRandom();
 		if (succesful) {
 			score++;
-			actManager.StartAct(score, ActFinished);
 		} else {
 			lives--;
-			if (lives == 0) EndGame();
-			else {
-				actManager.StartAct(score, ActFinished);
+			if (lives == 0) {
+				EndGame();
+				return;
 			}
 		}
+		GotoNextAct();
 	}
 }
