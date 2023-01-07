@@ -24,4 +24,8 @@ public class InputHandler : MonoBehaviour {
 
 		currentTarget.UseInput(x, y, action, escape);
 	}
+
+	public void SetTarget(IInputTarget target) {
+		currentTarget = target;
+	}
 }

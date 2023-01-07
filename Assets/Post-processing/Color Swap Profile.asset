@@ -15,22 +15,19 @@ MonoBehaviour:
   active: 1
   enabled:
     overrideState: 1
-    value: 0
+    value: 1
   redSwap:
     overrideState: 1
-    value: {r: 1, g: 0, b: 0, a: 0}
+    value: {r: 0, g: 1, b: 0, a: 1}
   greenSwap:
-    overrideState: 0
-    value: {r: 0, g: 0, b: 0, a: 0}
-  blueSwap:
-    overrideState: 0
-    value: {r: 0, g: 0, b: 0, a: 0}
-  greySwap:
     overrideState: 1
-    value: {r: 0.062032763, g: 0.41500896, b: 0.7735849, a: 1}
+    value: {r: 1, g: 0, b: 0, a: 1}
+  blueSwap:
+    overrideState: 1
+    value: {r: 0.5, g: 0, b: 0, a: 1}
   restSwap:
     overrideState: 1
-    value: {r: 0.38679248, g: 0.38679248, b: 0.38679248, a: 1}
+    value: {r: 0.5, g: 0, b: 0, a: 1}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0

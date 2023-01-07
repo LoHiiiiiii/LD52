@@ -6,12 +6,18 @@ using Random = UnityEngine.Random;
 
 public class ActManager : MonoBehaviour {
 
+	[SerializeField] InputHandler inputHandler;
+	[Space]
 	[SerializeField] int actRepeatGap;
 	[SerializeField] Act[] allActs;
 
 	Act currentAct;
 	Queue<Act> preventionQueue = new Queue<Act>();
+	ActInputHandler actInputHandler = new ActInputHandler();
 
+	void Start() {
+		StartAct(0, (bool test) => { });
+	}
 
 	public bool StartAct(int difficulty, Action<bool> ActEnded) {
 		if (currentAct != null) return false;
@@ -20,11 +26,14 @@ public class ActManager : MonoBehaviour {
 			preventionQueue.Dequeue();
 		} 
 
-		var chosenActs = allActs.Where(act => act.minDifficulty <= difficulty && act.maxDifficulty >= difficulty && !preventionQueue.Contains(act)) as Act[];
+		var chosenActs = allActs.Where(act => act.minDifficulty <= difficulty && act.maxDifficulty >= difficulty && !preventionQueue.Contains(act)).ToArray();
 
 		if (chosenActs.Length == 0) return false;
 		currentAct = chosenActs[Random.Range(0, chosenActs.Length)];
 		preventionQueue.Enqueue(currentAct);
+
+		inputHandler.SetTarget(actInputHandler);
+		actInputHandler.CurrentAct = currentAct;
 
 		currentAct.BeginAct(
 			(bool successful) => {

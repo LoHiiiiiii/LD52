@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6273507492412143941}
+  - component: {fileID: 7213342201529351714}
   - component: {fileID: 2495093434146879227}
   m_Layer: 6
   m_Name: Post-Process Volume
@@ -31,6 +32,38 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7213342201529351714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8198779353693202131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c8d33e9cf96874bbac2900f1e5e71d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorSwap: {fileID: 11400000, guid: 559ca0ef80e72cc449b6fdb90f6e92b8, type: 2}
+  profiles:
+  - primary: {r: 1, g: 0, b: 0, a: 1}
+    secondary: {r: 0, g: 1, b: 0, a: 1}
+    tertiary: {r: 0, g: 0.5, b: 0, a: 1}
+  - primary: {r: 0, g: 0, b: 1, a: 1}
+    secondary: {r: 1, g: 0.5, b: 0, a: 1}
+    tertiary: {r: 0.75, g: 0.375, b: 0, a: 1}
+  - primary: {r: 1, g: 1, b: 0, a: 1}
+    secondary: {r: 1, g: 0, b: 1, a: 1}
+    tertiary: {r: 0.5, g: 0, b: 0.5, a: 1}
+  - primary: {r: 0, g: 1, b: 0, a: 1}
+    secondary: {r: 1, g: 0, b: 0, a: 1}
+    tertiary: {r: 0.5, g: 0, b: 0, a: 1}
+  - primary: {r: 1, g: 0.5019608, b: 0, a: 1}
+    secondary: {r: 0, g: 0, b: 1, a: 1}
+    tertiary: {r: 0, g: 0, b: 0.5, a: 1}
+  - primary: {r: 1, g: 0, b: 1, a: 1}
+    secondary: {r: 1, g: 1, b: 0, a: 1}
+    tertiary: {r: 0.5, g: 0.5, b: 0, a: 1}
 --- !u!114 &2495093434146879227
 MonoBehaviour:
   m_ObjectHideFlags: 0
