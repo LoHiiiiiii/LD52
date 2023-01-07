@@ -28,9 +28,9 @@ public class WigglerAct : Act {
 	int remainingWiggles;
 	float startTime;
 
-	Action<bool> Finish;
+	Action<ActState> Finish;
 
-	public override void BeginAct(int difficulty, Action<bool> Finish) {
+	public override void BeginAct(int difficulty, Action<ActState> Finish) {
 		gameObject.SetActive(true);
 		lastX = 0;
 		remainingWiggles = baseWiggles + Mathf.FloorToInt((maxWiggles-baseWiggles)/maxDifficulty * difficulty);
@@ -43,23 +43,24 @@ public class WigglerAct : Act {
 		active = true;
 	}
 
-	public override void EndAct() {
+	public override void EndAct(ActState state) {
 		active = false;
 		gameObject.SetActive(false);
+		Finish(state);
 	}
 
 	void Update() {
 		if (!active) return;
 		float spentTime = Time.time - startTime;
 		if (spentTime > time) {
-			EndAct();
-			Finish(false);
+			EndAct(ActState.Fail);
 			return;
 		}
 		bar.fillAmount = (time - spentTime) / time;
 	}
 
 	public override void UseInput(int x, int y, bool action, bool escape) {
+		if (!active) return;
 		if (lastX != x) {
 			if (x == 1) {
 				wiggler.sprite = wigglerTwist;
@@ -87,8 +88,7 @@ public class WigglerAct : Act {
 	void HandleScore() {
 		remainingWiggles--;
 		if (remainingWiggles == 0) {
-			EndAct();
-			Finish(true);
+			EndAct(ActState.Success);
 			return;
 		}
 		nextIsRight = !nextIsRight;

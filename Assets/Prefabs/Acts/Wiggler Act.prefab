@@ -679,6 +679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2cdaff97e8536d4684e5bcd7cbd6c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorial: {fileID: 11400000, guid: 02bad4f1114aca24b80e9f77015f6709, type: 2}
   baseWiggles: 30
   maxDifficulty: 15
   maxWiggles: 60

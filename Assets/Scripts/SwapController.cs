@@ -27,6 +27,12 @@ public class SwapController : MonoBehaviour {
 		SwapColors(index);
 	}
 
+	public void Transition() {
+		if (curtain != null) {
+			curtain.FadeOut(profiles[CurrentSwapIndex].secondary);
+		}
+	}
+
 	void SwapColors(int index) {
 		if (colorSwap == null || index >= profiles.Length) return;
 		CurrentSwapIndex = index;
@@ -35,9 +41,7 @@ public class SwapController : MonoBehaviour {
 		settings.greenSwap.value = profiles[CurrentSwapIndex].secondary;
 		settings.blueSwap.value = profiles[CurrentSwapIndex].tertiary;
 		settings.restSwap.value = profiles[CurrentSwapIndex].tertiary;
-		if (curtain != null) {
-			curtain.FadeOut(profiles[CurrentSwapIndex].secondary);
-		}
+		Transition();
 	}
 
 }

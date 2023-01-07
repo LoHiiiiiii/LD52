@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ActManager : MonoBehaviour {
+public class ActManager : MonoBehaviour, IInputTarget {
 
 	[SerializeField] InputHandler inputHandler;
+	[SerializeField] MessageScreenController messageHandler;
 	[Space]
 	[SerializeField] int actRepeatGap;
 	[SerializeField] Act[] allActs;
 
 	Act currentAct;
 	Queue<Act> preventionQueue = new Queue<Act>();
-	ActInputHandler actInputHandler = new ActInputHandler();
-	
-	public bool StartAct(int difficulty, Action<bool> ActEnded) {
+
+	public bool StartAct(int difficulty, Action<ActState> ActEnded, Action Transition) {
 		if (currentAct != null) return false;
 
 		while (preventionQueue.Count > actRepeatGap && preventionQueue.Count > 0) {
@@ -27,22 +27,37 @@ public class ActManager : MonoBehaviour {
 		if (chosenActs.Length == 0) return false;
 		currentAct = chosenActs[Random.Range(0, chosenActs.Length)];
 		preventionQueue.Enqueue(currentAct);
+		inputHandler.SetTarget(this);
 
-		inputHandler.SetTarget(actInputHandler);
-		actInputHandler.CurrentAct = currentAct;
+		Action BeginAct = () => {
+			currentAct.BeginAct(difficulty,
+				(ActState state) => {
+					currentAct = null;
+					ActEnded(state);
+				}
+			);
+		};
 
-		currentAct.BeginAct(difficulty,
-			(bool successful) => {
-				currentAct = null;
-				ActEnded(successful);
-			}
-		);
+		if (currentAct.tutorial != null) {
+			messageHandler.ShowMessage(currentAct.tutorial, () => {
+				Transition();
+				BeginAct();
+			});
+		} else BeginAct();
 		return true;
 	}
 
+	public void UseInput(int x, int y, bool action, bool escape) {
+		if (escape) {
+			InterruptAct();
+		} else if (currentAct != null) {
+			currentAct.UseInput(x, y, action, escape);
+		}
+	}
+
 	public void InterruptAct() {
-		if (currentAct != null) return;
-		currentAct.EndAct();
+		if (currentAct == null) return;
+		currentAct.EndAct(ActState.Interrupt);
 		currentAct = null;
 	}
 }

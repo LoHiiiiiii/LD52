@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour {
 	[SerializeField] MenuController menu;
 	[SerializeField] ActManager actManager;
 	[SerializeField] SwapController swap;
+	[SerializeField] MessageScreenController messageScreen;
 	[SerializeField] int maxLives;
 
 	int score;
@@ -23,7 +24,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	void GotoMenu() {
-		swap.SwapRandom();
 		menu.gameObject.SetActive(true);
 		handler.SetTarget(menu);
 	}
@@ -37,7 +37,7 @@ public class GameController : MonoBehaviour {
 
 	void GotoNextAct() {
 		swap.SwapRandom();
-		actManager.StartAct(score, ActFinished);
+		actManager.StartAct(score, ActFinished, swap.Transition);
 	}
 
 	public void EndGame() {
@@ -48,16 +48,28 @@ public class GameController : MonoBehaviour {
 		GotoMenu();
 	}
 
-	public void ActFinished(bool succesful) {
-		if (succesful) {
-			score++;
-		} else {
-			lives--;
-			if (lives == 0) {
+	public void ActFinished(ActState state) {
+		swap.Transition();
+
+		switch (state) {
+			case ActState.Success:
+				score++;
+				messageScreen.Succeed(GotoNextAct);
+				break;
+			case ActState.Fail: 
+				lives--;
+				messageScreen.Fail(lives, () => {
+					if (lives == 0) {
+						swap.Transition();
+						EndGame();
+						return;
+					} else
+						GotoNextAct();
+				});
+				break;
+			case ActState.Interrupt:
 				EndGame();
-				return;
-			}
+				break;
 		}
-		GotoNextAct();
 	}
 }

@@ -13,10 +13,12 @@ public class MenuController : MonoBehaviour, IInputTarget {
 
 	int index;
 	int lastY;
+	bool lastEscape;
 
 	void OnEnable() {
 		index = 0;
 		lastY = 0;
+		lastEscape = true;
 		HandleIndicator();
 		int score = PlayerPrefs.GetInt("hiscore", 0);
 		if (score > 0) {
@@ -32,15 +34,14 @@ public class MenuController : MonoBehaviour, IInputTarget {
 			Press(index);
 		}
 
-		if (escape) {
+		if (escape && !lastEscape) {
 			index = 1;
-			return;
-		}
-		if (y != lastY) {
+		} else if (y != lastY) {
 			if (y > 0 && index != 0) index--;
 			if (y < 0 && index != MaxIndex()) index++;
 		}
 		lastY = y;
+		lastEscape = escape;
 		HandleIndicator();
 	}
 
