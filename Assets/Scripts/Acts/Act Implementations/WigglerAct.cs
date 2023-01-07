@@ -6,7 +6,9 @@ using Random = UnityEngine.Random;
 
 public class WigglerAct : Act {
 
-	[SerializeField] int wiggles;
+	[SerializeField] int baseWiggles;
+	[SerializeField] int maxDifficulty;
+	[SerializeField] int maxWiggles;
 	[SerializeField] float time;
 	[Space]
 	[SerializeField] SpriteRenderer wiggler;
@@ -28,10 +30,10 @@ public class WigglerAct : Act {
 
 	Action<bool> Finish;
 
-	public override void BeginAct(Action<bool> Finish) {
+	public override void BeginAct(int difficulty, Action<bool> Finish) {
 		gameObject.SetActive(true);
 		lastX = 0;
-		remainingWiggles = wiggles;
+		remainingWiggles = baseWiggles + Mathf.FloorToInt((maxWiggles-baseWiggles)/maxDifficulty * difficulty);
 		HandleCounter();
 		nextIsRight = Random.value > 0.5;
 		wiggler.sprite = wigglerDefault;
@@ -39,19 +41,21 @@ public class WigglerAct : Act {
 		this.Finish = Finish;
 		startTime = Time.time;
 		active = true;
+		Debug.Log("Begin");
 	}
 
 	public override void EndAct() {
 		active = false;
 		gameObject.SetActive(false);
+		Debug.Log("End");
 	}
 
 	void Update() {
 		if (!active) return;
 		float spentTime = Time.time - startTime;
 		if (spentTime > time) {
-			Finish(false);
 			EndAct();
+			Finish(false);
 			return;
 		}
 		bar.fillAmount = (time - spentTime) / time;
@@ -85,8 +89,8 @@ public class WigglerAct : Act {
 	void HandleScore() {
 		remainingWiggles--;
 		if (remainingWiggles == 0) {
-			Finish(true);
 			EndAct();
+			Finish(true);
 			return;
 		}
 		nextIsRight = !nextIsRight;

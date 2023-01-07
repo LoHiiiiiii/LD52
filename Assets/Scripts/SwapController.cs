@@ -6,6 +6,7 @@ using UnityEngine.Rendering.PostProcessing;
 public class SwapController : MonoBehaviour {
 	[SerializeField] PostProcessProfile colorSwap;
 	[SerializeField] SwapProfile[] profiles;
+	[SerializeField] Curtain curtain;
 	
 	[System.Serializable]
 	struct SwapProfile {
@@ -13,33 +14,30 @@ public class SwapController : MonoBehaviour {
 		public Color secondary;
 		public Color tertiary;
 	}
-
-	int currentSwapIndex;
+	public int CurrentSwapIndex { get; private set; }
 
 	private void Awake() {
-		currentSwapIndex = profiles.Length; //Any index is possible at start;
-		SwapRandom();
+		CurrentSwapIndex = profiles.Length; //Any index is possible at start;
 	}
-
-	private void Update() {
-		if (Input.GetKeyDown(KeyCode.P)) SwapRandom();
-	}
-
+	
 	public void SwapRandom() {
 		int index = Random.Range(0, profiles.Length - 1);
-		if (index >= currentSwapIndex) index++;
+		if (index >= CurrentSwapIndex) index++;
 
 		SwapColors(index);
 	}
 
 	void SwapColors(int index) {
 		if (colorSwap == null || index >= profiles.Length) return;
-		currentSwapIndex = index;
+		CurrentSwapIndex = index;
 		var settings = colorSwap.GetSetting<ColorSwap>();
-		settings.redSwap.value = profiles[currentSwapIndex].primary;
-		settings.greenSwap.value = profiles[currentSwapIndex].secondary;
-		settings.blueSwap.value = profiles[currentSwapIndex].tertiary;
-		settings.restSwap.value = profiles[currentSwapIndex].tertiary;
+		settings.redSwap.value = profiles[CurrentSwapIndex].primary;
+		settings.greenSwap.value = profiles[CurrentSwapIndex].secondary;
+		settings.blueSwap.value = profiles[CurrentSwapIndex].tertiary;
+		settings.restSwap.value = profiles[CurrentSwapIndex].tertiary;
+		if (curtain != null) {
+			curtain.FadeOut(profiles[CurrentSwapIndex].secondary);
+		}
 	}
 
 }

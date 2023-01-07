@@ -20,7 +20,7 @@ public class InputHandler : MonoBehaviour {
 		if (Input.GetKey(KeyCode.UpArrow)) y++;
 
 		bool action = Input.GetKey(KeyCode.Space);
-		bool escape = Input.GetKey(KeyCode.Escape);
+		bool escape = Input.GetKeyDown(KeyCode.Escape);
 
 		currentTarget.UseInput(x, y, action, escape);
 	}

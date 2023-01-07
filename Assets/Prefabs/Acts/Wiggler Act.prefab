@@ -136,7 +136,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5.4}
+  m_AnchoredPosition: {x: 0, y: -4.5}
   m_SizeDelta: {x: 5.8, y: 0.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7415573025744996275
@@ -211,7 +211,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -5.4}
+  m_AnchoredPosition: {x: 0, y: -4.5}
   m_SizeDelta: {x: 6, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9059158719649490486
@@ -411,7 +411,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8212577773356540405}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 0, z: 0}
+  m_LocalPosition: {x: 6.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8212577775065979450}
@@ -465,7 +465,7 @@ SpriteRenderer:
   m_Size: {x: 3.48, y: 6.33}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &8212577773595377508
@@ -493,7 +493,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8212577773595377508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8212577775065979450}
@@ -575,7 +575,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8212577774384341458}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 0, z: 0}
+  m_LocalPosition: {x: -5.75, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8212577775065979450}
@@ -626,7 +626,7 @@ SpriteRenderer:
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3.48, y: 6.33}
+  m_Size: {x: 4.71, y: 3.03}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -679,9 +679,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2cdaff97e8536d4684e5bcd7cbd6c61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDifficulty: 0
-  maxDifficulty: 0
-  wiggles: 40
+  baseWiggles: 30
+  maxDifficulty: 15
+  maxWiggles: 60
   time: 5
   wiggler: {fileID: 8212577773595377510}
   rightArrow: {fileID: 8212577773356540407}
@@ -690,5 +690,5 @@ MonoBehaviour:
   bar: {fileID: 2198819434731828575}
   wigglerDefault: {fileID: 21300000, guid: 5a89600e85e1bf84583928cae2f507c3, type: 3}
   wigglerTwist: {fileID: 21300000, guid: 182071678db18e14bb6bdabcced36130, type: 3}
-  bigArrow: {fileID: 21300000, guid: 393d07a1eea2d05409be41912ee9d41e, type: 3}
-  smallArrow: {fileID: 21300000, guid: 77fba177a0aa6574eb0d87ccb71f3f43, type: 3}
+  bigArrow: {fileID: 21300000, guid: 77fba177a0aa6574eb0d87ccb71f3f43, type: 3}
+  smallArrow: {fileID: 0}

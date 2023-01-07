@@ -14,11 +14,7 @@ public class ActManager : MonoBehaviour {
 	Act currentAct;
 	Queue<Act> preventionQueue = new Queue<Act>();
 	ActInputHandler actInputHandler = new ActInputHandler();
-
-	void Start() {
-		StartAct(0, (bool test) => { });
-	}
-
+	
 	public bool StartAct(int difficulty, Action<bool> ActEnded) {
 		if (currentAct != null) return false;
 
@@ -26,7 +22,7 @@ public class ActManager : MonoBehaviour {
 			preventionQueue.Dequeue();
 		} 
 
-		var chosenActs = allActs.Where(act => act.minDifficulty <= difficulty && act.maxDifficulty >= difficulty && !preventionQueue.Contains(act)).ToArray();
+		var chosenActs = allActs.Where(act => !preventionQueue.Contains(act)).ToArray();
 
 		if (chosenActs.Length == 0) return false;
 		currentAct = chosenActs[Random.Range(0, chosenActs.Length)];
@@ -35,7 +31,7 @@ public class ActManager : MonoBehaviour {
 		inputHandler.SetTarget(actInputHandler);
 		actInputHandler.CurrentAct = currentAct;
 
-		currentAct.BeginAct(
+		currentAct.BeginAct(difficulty,
 			(bool successful) => {
 				currentAct = null;
 				ActEnded(successful);
