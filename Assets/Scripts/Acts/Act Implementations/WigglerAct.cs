@@ -8,8 +8,7 @@ using Random = UnityEngine.Random;
 public class WigglerAct : Act {
 
 	[SerializeField] int baseWiggles;
-	[SerializeField] int maxDifficulty;
-	[SerializeField] int maxWiggles;
+	[SerializeField] int wigglePerDifficulty;
 	[SerializeField] float time;
 	[Space]
 	[SerializeField] SpriteRenderer wiggler;
@@ -36,7 +35,7 @@ public class WigglerAct : Act {
 		gameObject.SetActive(true);
 		ended = false;
 		lastX = 0;
-		remainingWiggles = baseWiggles + Mathf.FloorToInt((maxWiggles - baseWiggles) / maxDifficulty * difficulty);
+		remainingWiggles = baseWiggles + difficulty * wigglePerDifficulty;
 		HandleCounter();
 		nextIsRight = Random.value > 0.5;
 		wiggler.sprite = wigglerDefault;

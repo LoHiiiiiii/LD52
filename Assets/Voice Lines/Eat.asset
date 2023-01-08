@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f522d08eb64a46643814788373bd7788, type: 3}
   m_Name: Dodge
   m_EditorClassIdentifier: 
-  text: DODGE
+  text: EAT
   audio: {fileID: 0}

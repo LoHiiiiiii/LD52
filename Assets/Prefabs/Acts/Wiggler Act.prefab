@@ -681,8 +681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorial: {fileID: 11400000, guid: 02bad4f1114aca24b80e9f77015f6709, type: 2}
   baseWiggles: 30
-  maxDifficulty: 25
-  maxWiggles: 80
+  wigglePerDifficulty: 2
   time: 5
   wiggler: {fileID: 8212577773595377510}
   rightArrow: {fileID: 8212577773356540407}
