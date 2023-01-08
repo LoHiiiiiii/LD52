@@ -27,7 +27,7 @@ public class SpookyManager : MonoBehaviour {
 		return count;
 	}
 
-	private void Start() {
+	private void Awake() {
 		if (Instance != null) { Debug.Log("Multiple spooks"); Destroy(gameObject); }
 		Instance = this;
 	}

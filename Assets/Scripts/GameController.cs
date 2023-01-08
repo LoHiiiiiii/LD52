@@ -24,6 +24,11 @@ public class GameController : MonoBehaviour {
 	public void Start() {
 		menu.StartPressed += BeginGame;
 		menu.TruthPressed += TruthEnding;
+		StartCoroutine(LateStart());
+	}
+
+	IEnumerator LateStart() {
+		yield return null;
 		GotoMenu();
 	}
 
