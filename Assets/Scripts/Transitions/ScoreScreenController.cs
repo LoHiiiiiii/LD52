@@ -19,7 +19,7 @@ public class ScoreScreenController : MonoBehaviour, IInputTarget {
 
 	public void ShowScore(int score, Action<Action> ScoreFinished) {
 		scoreMessage.text = $"score: {score}";
-		knowledge.gameObject.SetActive(score >= 20 && SpookyManager.Instance.SpookUnlocked && !SpookyManager.Instance.HiscoreKnowledge);
+		knowledge.gameObject.SetActive(score >= 13 && SpookyManager.Instance.SpookUnlocked && !SpookyManager.Instance.HiscoreKnowledge);
 		index = 0;
 		lastEscape = true;
 		lastAction = true;

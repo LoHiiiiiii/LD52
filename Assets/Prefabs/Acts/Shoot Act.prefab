@@ -229,8 +229,8 @@ MonoBehaviour:
   tutorial: {fileID: 11400000, guid: 0c760bee22ee2e147b93e3d41cdd7152, type: 2}
   time: 4
   baseRotateTime: 4
-  minRotateTime: 0.7
-  maxDifficulty: 40
+  minRotateTime: 0.5
+  maxDifficulty: 30
   maxSize: 1
   minSize: 0.5
   curve:
