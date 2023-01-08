@@ -40,17 +40,18 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void EndGame() {
-		cameraController.CameraTransition(() => {
-			scoreScreen.ShowScore(score, (Action A) => {
+		handler.SetTarget(scoreScreen);
+		scoreScreen.ShowScore(score, (Action A) => {
+			cameraController.CameraTransition(() => {
 				A();
-				swap.Transition();
+				swap.SwapRandom();
 				GotoMenu();
 			});
-			if (score > PlayerPrefs.GetInt("hiscore", 0)) {
-				PlayerPrefs.SetInt("hiscore", score);
-			}
-			score = 0;
 		});
+		if (score > PlayerPrefs.GetInt("hiscore", 0)) {
+			PlayerPrefs.SetInt("hiscore", score);
+		}
+		score = 0;
 	}
 
 	public void ActFinished(ActState state, Action TransitionDone) {
@@ -73,12 +74,11 @@ public class GameController : MonoBehaviour {
 						cameraController.CameraTransition(() => {
 							A();
 							if (lives == 0) {
-								swap.Transition();
 								EndGame();
 								return;
 							} else
 								GotoNextAct();
-						}); 
+						});
 					});
 					break;
 				case ActState.Interrupt:

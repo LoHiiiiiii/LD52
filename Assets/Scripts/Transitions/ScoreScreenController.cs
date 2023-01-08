@@ -36,8 +36,8 @@ public class ScoreScreenController : MonoBehaviour, IInputTarget {
 		if (!active) return;
 		if ((action && !lastAction) || (escape && !lastEscape)) {
 
+			active = false;
 			ScoreFinished(() => {
-				active = true;
 				gameObject.SetActive(false);
 			});
 		}

@@ -10,7 +10,6 @@ public abstract class Act : MonoBehaviour, IInputTarget {
 	public abstract void EndAct(ActState state);
 	public abstract void UseInput(int x, int y, bool action, bool escape);
 
-
 	Coroutine shakeRoutine;
 	float shakeRatio;
 	Vector3 start;
