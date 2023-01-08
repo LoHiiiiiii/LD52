@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Wiggle
   m_EditorClassIdentifier: 
   text: WIGGLE
-  audio: {fileID: 0}
+  audio: {fileID: 11400000, guid: c25a64e380894e54fa1031169a30002e, type: 2}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Stop
   m_EditorClassIdentifier: 
   text: Stop...
-  audio: {fileID: 0}
+  audio: {fileID: 11400000, guid: 351fb37bc2acaee43b9dd1c3ab0dc044, type: 2}

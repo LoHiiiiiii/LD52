@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f522d08eb64a46643814788373bd7788, type: 3}
   m_Name: Ending 5
   m_EditorClassIdentifier: 
-  text: Marinated in eldritch knowledge
-  audio: {fileID: 0}
+  text: Drenched in eldritch knowledge
+  audio: {fileID: 11400000, guid: b0b90b1152223c447bd084d96644e2d3, type: 2}

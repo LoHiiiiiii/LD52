@@ -66,14 +66,14 @@ public class MessageScreenController : MonoBehaviour {
 	}
 
 	IEnumerator MessageRoutine(SoundHolder soundHolder, Action<Action> MessageFinished) {
-		yield return new WaitForSeconds(0.8f);
+		yield return new WaitForSeconds(0.5f);
 		var sound = AudioMaster.Instance.Play(soundHolder);
 		if (sound != null) {
 			while (sound.isPlaying) {
 				yield return null;
 			}
 		}
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.2f);
 		MessageFinished(() => regularHolder.SetActive(false));
 	}
 }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Great
   m_EditorClassIdentifier: 
   text: GREAT
-  audio: {fileID: 0}
+  audio: {fileID: 11400000, guid: 3a818c1506cf32b4dbeeb0ede79b776e, type: 2}

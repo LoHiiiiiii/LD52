@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: This is best for you
   m_EditorClassIdentifier: 
   text: This is best for you
-  audio: {fileID: 0}
+  audio: {fileID: 11400000, guid: 7fda07881e6385f4c9ae5e3761a10472, type: 2}

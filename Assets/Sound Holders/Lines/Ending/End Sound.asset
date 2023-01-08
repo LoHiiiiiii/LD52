@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7804164ea9d67314d9c9ed9d8d6e425e, type: 3}
   m_Name: End Sound
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 61be4217fc1d9fe4abf1f055b62ed1b7, type: 3}
+  clip: {fileID: 8300000, guid: ad9bfd83f179daf4184ce0fe12254839, type: 3}
   additionalClips: []
-  mixerGroup: {fileID: 0}
+  mixerGroup: {fileID: 478859431086069022, guid: 66b3c9dba62fd654d954ac70f8b71bb3, type: 2}
   minVolume: 1
   maxVolume: 1
   minPitch: 1

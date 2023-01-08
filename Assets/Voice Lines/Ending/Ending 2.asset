@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Ending 2
   m_EditorClassIdentifier: 
   text: What gluttonous curiosity
-  audio: {fileID: 0}
+  audio: {fileID: 11400000, guid: 369b8d74289eead4d81eee5b195f86c8, type: 2}

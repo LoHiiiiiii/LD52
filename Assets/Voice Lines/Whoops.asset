@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Whoops
   m_EditorClassIdentifier: 
   text: WHOOPS
-  audio: {fileID: 0}
+  audio: {fileID: 11400000, guid: bf64ed9d16cbf5e4bbf01944b6e5bca0, type: 2}

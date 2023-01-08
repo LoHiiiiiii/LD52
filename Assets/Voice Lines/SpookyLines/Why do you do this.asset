@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Why do you do this
   m_EditorClassIdentifier: 
   text: Why do you do this
-  audio: {fileID: 0}
+  audio: {fileID: 11400000, guid: a34ba821c0df6e14e84fc5ec4b55a424, type: 2}

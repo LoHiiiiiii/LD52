@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: No more, please
   m_EditorClassIdentifier: 
   text: No more, please
-  audio: {fileID: 0}
+  audio: {fileID: 11400000, guid: 316474abfab52a0499af5499b77fa12f, type: 2}

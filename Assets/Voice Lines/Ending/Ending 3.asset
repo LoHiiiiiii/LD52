@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f522d08eb64a46643814788373bd7788, type: 3}
   m_Name: Ending 3
   m_EditorClassIdentifier: 
-  text: Nonetheless, I'm ravenous
-  audio: {fileID: 0}
+  text: Nonetheless, I am ravenous
+  audio: {fileID: 11400000, guid: 0e9586375935a544f8682cab29acf967, type: 2}

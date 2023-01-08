@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Ending 4
   m_EditorClassIdentifier: 
   text: And a soul like yours
-  audio: {fileID: 0}
+  audio: {fileID: 11400000, guid: 8ccc1c628d70b0f41b9aba2322ecc5e3, type: 2}
