@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GameController : MonoBehaviour {
@@ -10,14 +9,11 @@ public class GameController : MonoBehaviour {
 	[SerializeField] SwapController swap;
 	[SerializeField] MessageScreenController messageScreen;
 	[SerializeField] ScoreScreenController scoreScreen;
+	[SerializeField] CameraController cameraController;
 	[SerializeField] int maxLives;
 
 	int score;
 	int lives;
-
-	private void Awake() {
-		Camera.main.orthographicSize = Camera.main.orthographicSize * Mathf.Max(1, (1920f/1080f) / Camera.main.aspect);
-	}
 
 	public void Start() {
 		menu.StartPressed += BeginGame;
@@ -32,46 +28,63 @@ public class GameController : MonoBehaviour {
 	public void BeginGame() {
 		score = 0;
 		lives = maxLives;
-		menu.gameObject.SetActive(false);
-		GotoNextAct();
+		cameraController.CameraTransition(() => {
+			menu.gameObject.SetActive(false);
+			GotoNextAct();
+		});
 	}
 
 	void GotoNextAct() {
 		swap.SwapRandom();
-		actManager.StartAct(score, ActFinished, swap.Transition);
+		actManager.StartAct(score, ActFinished, cameraController.CameraTransition);
 	}
 
 	public void EndGame() {
-		handler.SetTarget(scoreScreen);
-		scoreScreen.ShowScore(score, () => { swap.Transition(); GotoMenu(); });
-		if (score > PlayerPrefs.GetInt("hiscore", 0)) {
-			PlayerPrefs.SetInt("hiscore", score);
-		}
-		score = 0;
+		cameraController.CameraTransition(() => {
+			scoreScreen.ShowScore(score, (Action A) => {
+				A();
+				swap.Transition();
+				GotoMenu();
+			});
+			if (score > PlayerPrefs.GetInt("hiscore", 0)) {
+				PlayerPrefs.SetInt("hiscore", score);
+			}
+			score = 0;
+		});
 	}
 
-	public void ActFinished(ActState state) {
-		swap.Transition();
+	public void ActFinished(ActState state, Action TransitionDone) {
+		cameraController.CameraTransition(() => {
+			TransitionDone();
 
-		switch (state) {
-			case ActState.Success:
-				score++;
-				messageScreen.Succeed(GotoNextAct);
-				break;
-			case ActState.Fail: 
-				lives--;
-				messageScreen.Fail(lives, () => {
-					if (lives == 0) {
-						swap.Transition();
-						EndGame();
-						return;
-					} else
-						GotoNextAct();
-				});
-				break;
-			case ActState.Interrupt:
-				EndGame();
-				break;
-		}
+			switch (state) {
+				case ActState.Success:
+					score++;
+					messageScreen.Succeed((Action A) => {
+						cameraController.CameraTransition(() => {
+							A();
+							GotoNextAct();
+						});
+					});
+					break;
+				case ActState.Fail:
+					lives--;
+					messageScreen.Fail(lives, (Action A) => {
+						cameraController.CameraTransition(() => {
+							A();
+							if (lives == 0) {
+								swap.Transition();
+								EndGame();
+								return;
+							} else
+								GotoNextAct();
+						}); 
+					});
+					break;
+				case ActState.Interrupt:
+					EndGame();
+					break;
+			}
+		});
 	}
 }

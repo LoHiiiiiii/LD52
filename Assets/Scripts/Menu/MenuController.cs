@@ -15,6 +15,7 @@ public class MenuController : MonoBehaviour, IInputTarget {
 	int lastY;
 	bool lastEscape;
 	bool lastAction;
+	bool active;
 
 	void OnEnable() {
 		index = 0;
@@ -22,6 +23,7 @@ public class MenuController : MonoBehaviour, IInputTarget {
 		lastEscape = true;
 		lastAction = true;
 		HandleIndicator();
+		active = true;
 		int score = PlayerPrefs.GetInt("hiscore", 0);
 		if (score > 0) {
 			hiscore.gameObject.SetActive(true);
@@ -32,6 +34,7 @@ public class MenuController : MonoBehaviour, IInputTarget {
 	}
 
 	public void UseInput(int x, int y, bool action, bool escape) {
+		if (!active) return;
 		if (action && !lastAction) {
 			Press(index);
 		}
@@ -59,6 +62,7 @@ public class MenuController : MonoBehaviour, IInputTarget {
 	void Press(int index) {
 		switch (index) {
 			case 0:
+				active = false;
 				StartPressed?.Invoke();
 				break;
 			case 1:

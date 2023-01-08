@@ -6,7 +6,7 @@ using TMPro;
 using Random = UnityEngine.Random;
 
 public class SleepAct : Act {
-	
+
 	[SerializeField] float time;
 	[Space]
 	[SerializeField] SpriteRenderer sleeper;
@@ -15,39 +15,41 @@ public class SleepAct : Act {
 	[SerializeField] Sprite sleeperFail;
 
 	bool active;
-	bool failed;
+	bool ended;
 	float startTime;
 
-	Action<ActState> Finish;
+	Action<ActState, Action> Finish;
 
-	public override void BeginAct(int difficulty, Action<ActState> Finish) {
+	public override void BeginAct(int difficulty, Action<ActState, Action> Finish) {
 		gameObject.SetActive(true);
 		sleeper.sprite = sleeperDefault;
 		this.Finish = Finish;
 		startTime = Time.time;
 		active = true;
-		failed = false;
+		ended = false;
 	}
 
 	public override void EndAct(ActState state) {
 		if (!active) return;
-		StopShake();
-		active = false;
-		gameObject.SetActive(false);
-		Finish(state);
+		Finish(state, () => {
+			StopShake();
+			active = false;
+			gameObject.SetActive(false);
+		});
 	}
 
 	void Update() {
-		if (!active || failed) return;
+		if (!active || ended) return;
 		float spentTime = Time.time - startTime;
 		if (spentTime > time) {
+			ended = true;
 			EndAct(ActState.Success);
 			return;
 		}
 	}
 
 	public override void UseInput(int x, int y, bool action, bool escape) {
-		if (!active || failed) return;
+		if (!active || ended) return;
 		if (x != 0 || y != 0 || action) {
 			StartCoroutine(FailRoutine());
 		}
@@ -55,7 +57,7 @@ public class SleepAct : Act {
 
 
 	IEnumerator FailRoutine() {
-		failed = true;
+		ended = true;
 		sleeper.sprite = sleeperFail;
 		Shake(sleeper.transform, 0.5f, 0.7f);
 		yield return new WaitForSeconds(1f);

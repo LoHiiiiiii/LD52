@@ -15,12 +15,12 @@ public class ActManager : MonoBehaviour, IInputTarget {
 	Act currentAct;
 	Queue<Act> preventionQueue = new Queue<Act>();
 
-	public bool StartAct(int difficulty, Action<ActState> ActEnded, Action Transition) {
+	public bool StartAct(int difficulty, Action<ActState, Action> ActEnded, Action<Action> Transition) {
 		if (currentAct != null) return false;
 
 		while (preventionQueue.Count > actRepeatGap && preventionQueue.Count > 0) {
 			preventionQueue.Dequeue();
-		} 
+		}
 
 		var chosenActs = allActs.Where(act => !preventionQueue.Contains(act)).ToArray();
 
@@ -31,17 +31,20 @@ public class ActManager : MonoBehaviour, IInputTarget {
 
 		Action BeginAct = () => {
 			currentAct.BeginAct(difficulty,
-				(ActState state) => {
+				(ActState state, Action Ended) => {
 					currentAct = null;
-					ActEnded(state);
+					ActEnded(state, Ended);
 				}
 			);
 		};
 
 		if (currentAct.tutorial != null) {
-			messageHandler.ShowMessage(currentAct.tutorial, () => {
-				Transition();
-				BeginAct();
+			messageHandler.ShowMessage(currentAct.tutorial, (Action A) => {
+				Transition(() => {
+					A();
+					BeginAct();
+				});
+
 			});
 		} else BeginAct();
 		return true;

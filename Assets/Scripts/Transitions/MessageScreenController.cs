@@ -15,7 +15,7 @@ public class MessageScreenController : MonoBehaviour {
 	[SerializeField] VoiceLine[] successVoiceLines;
 	[SerializeField] VoiceLine[] failVoiceLines;
 
-	public void Fail(int lives, Action FailFinished) {
+	public void Fail(int lives, Action<Action> FailFinished) {
 		var chosen = failVoiceLines[Random.Range(0, failVoiceLines.Length)];
 		failMessage.text = chosen.text;
 		failHolder.SetActive(true);
@@ -26,7 +26,7 @@ public class MessageScreenController : MonoBehaviour {
 		StartCoroutine(HeartRoutine(hearts[lives], FailFinished, chosen.audio));
 	}
 
-	IEnumerator HeartRoutine(HeartController heart, Action FailFinished, SoundHolder soundHolder) {
+	IEnumerator HeartRoutine(HeartController heart, Action<Action> FailFinished, SoundHolder soundHolder) {
 		yield return new WaitForSeconds(1f);
 		var sound = AudioMaster.Instance.Play(soundHolder);
 		if (sound != null) {
@@ -38,22 +38,21 @@ public class MessageScreenController : MonoBehaviour {
 		yield return new WaitForSeconds(0.5f);
 		heart.Break();
 		yield return new WaitForSeconds(1.5f);
-		FailFinished();
-		failHolder.SetActive(false);
+		FailFinished(() => failHolder.SetActive(false));
 	}
 
-	public void Succeed(Action SuccessFinished) {
+	public void Succeed(Action<Action> SuccessFinished) {
 		var chosen = successVoiceLines[Random.Range(0, successVoiceLines.Length)];
 		ShowMessage(chosen, SuccessFinished);
 	}
 
-	public void ShowMessage(VoiceLine voiceLine, Action MessageFinished) {
+	public void ShowMessage(VoiceLine voiceLine, Action<Action> MessageFinished) {
 		regularHolder.SetActive(true);
 		regularMessage.text = voiceLine.text;
 		StartCoroutine(MessageRoutine(voiceLine.audio, MessageFinished));
 	}
 
-	IEnumerator MessageRoutine(SoundHolder soundHolder, Action MessageFinished) {
+	IEnumerator MessageRoutine(SoundHolder soundHolder, Action<Action> MessageFinished) {
 		yield return new WaitForSeconds(0.8f);
 		var sound = AudioMaster.Instance.Play(soundHolder);
 		if (sound != null) {
@@ -62,7 +61,6 @@ public class MessageScreenController : MonoBehaviour {
 			}
 		}
 		yield return new WaitForSeconds(0.5f);
-		regularHolder.SetActive(false);
-		MessageFinished();
+		MessageFinished(() => regularHolder.SetActive(false));
 	}
 }

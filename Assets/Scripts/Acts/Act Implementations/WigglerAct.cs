@@ -30,9 +30,9 @@ public class WigglerAct : Act {
 	int remainingWiggles;
 	float startTime;
 
-	Action<ActState> Finish;
+	Action<ActState, Action> Finish;
 
-	public override void BeginAct(int difficulty, Action<ActState> Finish) {
+	public override void BeginAct(int difficulty, Action<ActState, Action> Finish) {
 		gameObject.SetActive(true);
 		ended = false;
 		lastX = 0;
@@ -49,9 +49,10 @@ public class WigglerAct : Act {
 	public override void EndAct(ActState state) {
 		if (!active)
 			active = false;
-		StopShake();
-		gameObject.SetActive(false);
-		Finish(state);
+		Finish(state, () => {
+			StopShake();
+			gameObject.SetActive(false);
+		} );
 	}
 
 	void Update() {

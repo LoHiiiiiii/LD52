@@ -10,16 +10,18 @@ public class ScoreScreenController : MonoBehaviour, IInputTarget {
 	[SerializeField] GameObject[] indicators;
 
 	int index;
-	Action ScoreFinished;
+	Action<Action> ScoreFinished;
 
 	bool lastEscape;
 	bool lastAction;
+	bool active;
 
-	public void ShowScore(int score, Action ScoreFinished) {
+	public void ShowScore(int score, Action<Action> ScoreFinished) {
 		scoreMessage.text = $"score: {score}";
 		index = 0;
 		lastEscape = true;
 		lastAction = true;
+		active = true;
 		HandleIndicator();
 		gameObject.SetActive(true);
 		this.ScoreFinished = ScoreFinished;
@@ -31,9 +33,13 @@ public class ScoreScreenController : MonoBehaviour, IInputTarget {
 	}
 
 	public void UseInput(int x, int y, bool action, bool escape) {
+		if (!active) return;
 		if ((action && !lastAction) || (escape && !lastEscape)) {
-			gameObject.SetActive(false);
-			ScoreFinished();
+
+			ScoreFinished(() => {
+				active = true;
+				gameObject.SetActive(false);
+			});
 		}
 		lastAction = action;
 		lastEscape = escape;

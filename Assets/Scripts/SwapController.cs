@@ -7,7 +7,7 @@ public class SwapController : MonoBehaviour {
 	[SerializeField] PostProcessProfile colorSwap;
 	[SerializeField] SwapProfile[] profiles;
 	[SerializeField] Curtain curtain;
-	
+
 	[System.Serializable]
 	struct SwapProfile {
 		public Color primary;
@@ -25,6 +25,7 @@ public class SwapController : MonoBehaviour {
 		if (index >= CurrentSwapIndex) index++;
 
 		SwapColors(index);
+		Transition();
 	}
 
 	public void Transition() {
@@ -41,7 +42,6 @@ public class SwapController : MonoBehaviour {
 		settings.greenSwap.value = profiles[CurrentSwapIndex].secondary;
 		settings.blueSwap.value = profiles[CurrentSwapIndex].tertiary;
 		settings.restSwap.value = profiles[CurrentSwapIndex].tertiary;
-		Transition();
 	}
 
 }
