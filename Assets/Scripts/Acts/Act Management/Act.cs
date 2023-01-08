@@ -25,7 +25,7 @@ public abstract class Act : MonoBehaviour, IInputTarget {
 	protected void StopShake() {
 		if (shakeRoutine == null) return;
 		shakeRatio = 0;
-		target.position = start;
+		target.localPosition = start;
 		target = null;
 		StopCoroutine(shakeRoutine);
 		shakeRoutine = null;
@@ -33,11 +33,11 @@ public abstract class Act : MonoBehaviour, IInputTarget {
 
 	IEnumerator ShakeRoutine(Transform t, float duration, float amount) {
 		target = t;
-		start = t.position;
+		start = t.localPosition;
 		shakeRatio = 1;
 		while (shakeRatio > 0) {
 			shakeRatio -= Time.deltaTime / duration;
-			target.position = Quaternion.Euler(0, 0, Random.Range(0, 360)) * Vector3.right * amount * shakeRatio * shakeRatio + start;
+			target.localPosition = Quaternion.Euler(0, 0, Random.Range(0, 360)) * Vector3.right * amount * shakeRatio * shakeRatio + start;
 			yield return null;
 		}
 		StopShake();
