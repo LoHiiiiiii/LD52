@@ -46,12 +46,12 @@ public class SprintAct : Act {
 	}
 
 	public override void EndAct(ActState state) {
-		if (!active)
-			active = false;
+		if (!active) return;
+		active = false;
 		Finish(state, () => {
 			StopShake();
 			gameObject.SetActive(false);
-		} );
+		});
 	}
 
 	void Update() {

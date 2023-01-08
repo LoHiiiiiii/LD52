@@ -13,10 +13,17 @@ public class MessageScreenController : MonoBehaviour {
 	[SerializeField] HeartController[] hearts;
 
 	[SerializeField] VoiceLine[] successVoiceLines;
+	[SerializeField] VoiceLine[] spookySuccessLines;
 	[SerializeField] VoiceLine[] failVoiceLines;
+	[SerializeField] VoiceLine[] spookyFailLines;
 
 	public void Fail(int lives, Action<Action> FailFinished) {
-		var chosen = failVoiceLines[Random.Range(0, failVoiceLines.Length)];
+		VoiceLine chosen;
+		if (SpookyManager.Instance.SpookUnlocked && Random.value <= 0.125f) {
+			chosen = spookyFailLines[Random.Range(0, spookyFailLines.Length)];
+		} else {
+			chosen = failVoiceLines[Random.Range(0, failVoiceLines.Length)];
+		}
 		failMessage.text = chosen.text;
 		failHolder.SetActive(true);
 		for (int i = 0; i < hearts.Length; ++i) {
@@ -42,8 +49,14 @@ public class MessageScreenController : MonoBehaviour {
 	}
 
 	public void Succeed(Action<Action> SuccessFinished) {
-		var chosen = successVoiceLines[Random.Range(0, successVoiceLines.Length)];
-		ShowMessage(chosen, SuccessFinished);
+		if (SpookyManager.Instance.SpookUnlocked && Random.value <= 0.125f) {
+			var chosen = spookySuccessLines[Random.Range(0, spookySuccessLines.Length)];
+			ShowMessage(chosen, SuccessFinished);
+		}
+		else {
+			var chosen = successVoiceLines[Random.Range(0, successVoiceLines.Length)];
+			ShowMessage(chosen, SuccessFinished);
+		}
 	}
 
 	public void ShowMessage(VoiceLine voiceLine, Action<Action> MessageFinished) {

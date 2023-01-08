@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputHandler: {fileID: 436442341769722820}
   messageHandler: {fileID: 0}
-  actRepeatGap: 2
+  actRepeatGap: 3
   allActs:
   - {fileID: 8793456507368232698}
   - {fileID: 2913398962921805994}
@@ -81,7 +81,17 @@ MonoBehaviour:
   scoreScreen: {fileID: 0}
   cameraController: {fileID: 0}
   maxLives: 3
+  musicController: {fileID: 0}
   controlMessage: {fileID: 11400000, guid: 6e646c196c9c4ff44a3f315a0fd2b52d, type: 2}
+  truthLines:
+  - {fileID: 11400000, guid: 5a36a20e7b724f84da90486fda41d3d2, type: 2}
+  - {fileID: 11400000, guid: 2b8a55d12d4f96847a089454294aa5b2, type: 2}
+  - {fileID: 11400000, guid: b3514816e0ba9f54c8790e8c61ee41fc, type: 2}
+  - {fileID: 11400000, guid: 2b58de96f8a65fb4194deddf51eb1708, type: 2}
+  - {fileID: 11400000, guid: f11d7161040cc7d4d954bef42e58d2f1, type: 2}
+  - {fileID: 11400000, guid: 54d9be2a288fcf54580f8ea9b9d1434c, type: 2}
+  aura: {fileID: 0}
+  endSound: {fileID: 11400000, guid: 779e6b69e3fd1464abc4392399530aff, type: 2}
 --- !u!114 &436442341769722820
 MonoBehaviour:
   m_ObjectHideFlags: 0

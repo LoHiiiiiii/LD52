@@ -29,6 +29,7 @@ public class MusicController : MonoBehaviour {
 	}
 
 	void UpdateVolume(AudioSource source) {
+		if (source == null) return;
 		if (target != source) source.volume = Mathf.MoveTowards(source.volume, 0, Time.deltaTime / soundDuration);
 		else source.volume = Mathf.MoveTowards(source.volume, 1, Time.deltaTime / soundDuration);
 	}

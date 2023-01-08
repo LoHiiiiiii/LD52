@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7213342201529351714}
   - component: {fileID: 2495093434146879227}
   m_Layer: 6
-  m_Name: Post-Process Volume
+  m_Name: Color Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,6 +64,11 @@ MonoBehaviour:
   - primary: {r: 1, g: 0, b: 1, a: 1}
     secondary: {r: 1, g: 1, b: 0, a: 1}
     tertiary: {r: 0.5, g: 0.5, b: 0, a: 1}
+  curtain: {fileID: 0}
+  spookyProfile:
+    primary: {r: 0.8396226, g: 0.17030083, b: 0.17030083, a: 1}
+    secondary: {r: 0.3018868, g: 0.3018868, b: 0.3018868, a: 1}
+    tertiary: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &2495093434146879227
 MonoBehaviour:
   m_ObjectHideFlags: 0

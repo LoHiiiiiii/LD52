@@ -371,8 +371,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorial: {fileID: 11400000, guid: fa12d9150729b434b9dec095c05bd8c5, type: 2}
-  basePresses: 8
-  pressesPerDifficulty: 2
+  basePresses: 6
+  pressesPerDifficulty: 1
   time: 8
   icons:
   - {fileID: 4470991321083983044}

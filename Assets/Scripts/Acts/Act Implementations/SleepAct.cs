@@ -13,6 +13,7 @@ public class SleepAct : Act {
 	[Space]
 	[SerializeField] Sprite sleeperDefault;
 	[SerializeField] Sprite sleeperFail;
+	[SerializeField] GameObject knowledge;
 
 	bool active;
 	bool ended;
@@ -22,6 +23,8 @@ public class SleepAct : Act {
 
 	public override void BeginAct(int difficulty, Action<ActState, Action> Finish) {
 		gameObject.SetActive(true);
+		sleeper.gameObject.SetActive(true);
+		knowledge.gameObject.SetActive(false);
 		sleeper.sprite = sleeperDefault;
 		this.Finish = Finish;
 		startTime = Time.time;
@@ -43,6 +46,7 @@ public class SleepAct : Act {
 		float spentTime = Time.time - startTime;
 		if (spentTime > time) {
 			ended = true;
+			SpookyManager.Instance.NapBeaten = true;
 			EndAct(ActState.Success);
 			return;
 		}
@@ -59,9 +63,18 @@ public class SleepAct : Act {
 	IEnumerator FailRoutine() {
 		ended = true;
 		sleeper.sprite = sleeperFail;
-		Shake(sleeper.transform, 0.5f, 0.7f);
-		yield return new WaitForSeconds(1f);
-		EndAct(ActState.Fail);
+		if (SpookyManager.Instance.NapBeaten && SpookyManager.Instance.SpookUnlocked && !SpookyManager.Instance.NapKnowledge) {
+			sleeper.gameObject.SetActive(false);
+			knowledge.SetActive(true);
+			Shake(knowledge.transform, 0.5f, 0.7f);
+			SpookyManager.Instance.NapKnowledge = true;
+			yield return new WaitForSeconds(1f);
+			EndAct(ActState.Success);
+		} else {
+			Shake(sleeper.transform, 0.5f, 0.7f);
+			yield return new WaitForSeconds(1f);
+			EndAct(ActState.Fail);
+		}
 	}
 
 }

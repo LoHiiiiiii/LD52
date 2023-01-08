@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f522d08eb64a46643814788373bd7788, type: 3}
-  m_Name: Keep going
+  m_Name: Ending 1
   m_EditorClassIdentifier: 
-  text: KEEP GOING
+  text: So, you didn't heed my warning
   audio: {fileID: 0}

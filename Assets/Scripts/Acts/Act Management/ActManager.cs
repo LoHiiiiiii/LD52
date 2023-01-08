@@ -23,7 +23,7 @@ public class ActManager : MonoBehaviour, IInputTarget {
 			preventionQueue.Dequeue();
 		}
 
-		if (difficulty > 3 && Random.value <= 0.1f && !preventionQueue.Contains(sleepAct)) {
+		if (difficulty > 3 && !SpookyManager.Instance.FirstGame && (!SpookyManager.Instance.NapBeaten || (Random.value <= 0.35f && !preventionQueue.Contains(sleepAct)))) {
 			currentAct = sleepAct;
 			preventionQueue.Enqueue(sleepAct);
 		} else {
