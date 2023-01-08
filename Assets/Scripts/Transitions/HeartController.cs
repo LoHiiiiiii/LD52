@@ -28,12 +28,12 @@ public class HeartController : MonoBehaviour {
 		full.gameObject.SetActive(false);
 		left.gameObject.SetActive(true);
 		right.gameObject.SetActive(true);
-		StartCoroutine(LaunchRoutine(left, Quaternion.Euler(0, 0, Random.Range(-60, 30)) * Vector3.left, Random.Range(12, 15), Random.Range(240, 480)));
-		StartCoroutine(LaunchRoutine(right, Quaternion.Euler(0, 0, Random.Range(30, 60)) * Vector3.right, Random.Range(12, 15), -Random.Range(240, 480)));
+		StartCoroutine(LaunchRoutine(left, Quaternion.Euler(0, 0, Random.Range(-60, 30)) * Vector3.left, Random.Range(20, 28), Random.Range(630, 1080)));
+		StartCoroutine(LaunchRoutine(right, Quaternion.Euler(0, 0, Random.Range(30, 60)) * Vector3.right, Random.Range(20, 28), -Random.Range(630, 1080)));
 	}
 
 	IEnumerator LaunchRoutine(Transform heart, Vector3 direction, float speed, float rotationSpeed) {
-		float gravity = 10;
+		float gravity = 30;
 		Vector3 dir = direction * speed;
 		while (true) {
 			dir += gravity * Time.deltaTime * Vector3.down;

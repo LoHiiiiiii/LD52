@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -23,6 +24,7 @@ public class WigglerAct : Act {
 	[SerializeField] Sprite smallArrow;
 
 	bool active;
+	bool ended;
 	bool nextIsRight;
 	int lastX;
 	int remainingWiggles;
@@ -32,8 +34,9 @@ public class WigglerAct : Act {
 
 	public override void BeginAct(int difficulty, Action<ActState> Finish) {
 		gameObject.SetActive(true);
+		ended = false;
 		lastX = 0;
-		remainingWiggles = baseWiggles + Mathf.FloorToInt((maxWiggles-baseWiggles)/maxDifficulty * difficulty);
+		remainingWiggles = baseWiggles + Mathf.FloorToInt((maxWiggles - baseWiggles) / maxDifficulty * difficulty);
 		HandleCounter();
 		nextIsRight = Random.value > 0.5;
 		wiggler.sprite = wigglerDefault;
@@ -44,16 +47,18 @@ public class WigglerAct : Act {
 	}
 
 	public override void EndAct(ActState state) {
-		active = false;
+		if (!active)
+			active = false;
+		StopShake();
 		gameObject.SetActive(false);
 		Finish(state);
 	}
 
 	void Update() {
-		if (!active) return;
+		if (!active || ended) return;
 		float spentTime = Time.time - startTime;
 		if (spentTime > time) {
-			EndAct(ActState.Fail);
+			StartCoroutine(EndRoutine(ActState.Fail));
 			return;
 		}
 		bar.fillAmount = (time - spentTime) / time;
@@ -62,6 +67,7 @@ public class WigglerAct : Act {
 	public override void UseInput(int x, int y, bool action, bool escape) {
 		if (!active) return;
 		if (lastX != x) {
+			Shake(wiggler.transform, 0.1f, 0.5f);
 			if (x == 1) {
 				wiggler.sprite = wigglerTwist;
 				wiggler.flipX = true;
@@ -73,7 +79,6 @@ public class WigglerAct : Act {
 					wiggler.sprite = wigglerDefault;
 				}
 			}
-
 			if (nextIsRight && x == 1) {
 				HandleScore();
 			} else if (!nextIsRight && x == -1) {
@@ -84,16 +89,24 @@ public class WigglerAct : Act {
 		}
 
 	}
-	
+
 	void HandleScore() {
+		if (ended) return;
 		remainingWiggles--;
-		if (remainingWiggles == 0) {
-			EndAct(ActState.Success);
-			return;
-		}
 		nextIsRight = !nextIsRight;
 		HandleCounter();
 		HandleArrow();
+		if (remainingWiggles == 0) {
+			StartCoroutine(EndRoutine(ActState.Success));
+		}
+	}
+
+	IEnumerator EndRoutine(ActState state) {
+		ended = true;
+		rightArrow.sprite = smallArrow;
+		leftArrow.sprite = smallArrow;
+		yield return new WaitForSeconds(1f);
+		EndAct(state);
 	}
 
 	void HandleCounter() {
