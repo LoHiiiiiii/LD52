@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
 	[SerializeField] ScoreScreenController scoreScreen;
 	[SerializeField] CameraController cameraController;
 	[SerializeField] int maxLives;
+	[SerializeField] MusicController musicController;
 	[SerializeField] VoiceLine controlMessage;
 
 	int score;
@@ -22,6 +23,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	void GotoMenu() {
+		musicController.PlayMenu();
 		menu.gameObject.SetActive(true);
 		handler.SetTarget(menu);
 	}
@@ -32,8 +34,10 @@ public class GameController : MonoBehaviour {
 		cameraController.CameraTransition(() => {
 			menu.gameObject.SetActive(false);
 			messageScreen.ShowMessage(controlMessage, (Action A) => {
+				musicController.StopMusic();
 				cameraController.CameraTransition(() => {
 					A();
+					musicController.PlayGame();
 					GotoNextAct();
 				});
 			});
@@ -46,6 +50,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void EndGame() {
+		musicController.StopMusic();
 		handler.SetTarget(scoreScreen);
 		scoreScreen.ShowScore(score, (Action A) => {
 			cameraController.CameraTransition(() => {

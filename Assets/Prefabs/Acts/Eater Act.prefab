@@ -48,11 +48,11 @@ MonoBehaviour:
   tutorial: {fileID: 11400000, guid: 78a85f1cc08ef6b43bc4d82c3a0f9587, type: 2}
   lanes: 5
   laneSize: 2
-  baseSpeed: 24
+  baseSpeed: 16
   baseGrow: 0.3
   maxDifficulty: 20
   maxGrow: 0.08
-  maxSpeed: 72
+  maxSpeed: 64
   baseApplesToEat: 5
   applePerDifficulty: 1
   dude: {fileID: 6111838241980994320}

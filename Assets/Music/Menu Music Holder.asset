@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7804164ea9d67314d9c9ed9d8d6e425e, type: 3}
+  m_Name: Menu Music Holder
+  m_EditorClassIdentifier: 
+  clip: {fileID: 8300000, guid: c5020d7e50234054dba4a72d934251d4, type: 3}
+  additionalClips: []
+  mixerGroup: {fileID: -6720709482996695805, guid: 66b3c9dba62fd654d954ac70f8b71bb3, type: 2}
+  minVolume: 0
+  maxVolume: 0
+  minPitch: 1
+  maxPitch: 1
+  loop: 1
