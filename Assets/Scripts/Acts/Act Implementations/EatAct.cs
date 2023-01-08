@@ -48,8 +48,8 @@ public class EatAct : Act {
 		currentLane = Mathf.FloorToInt(lanes / 2f);
 		this.Finish = Finish;
 		active = true;
-		moveSpeed = Mathf.Lerp(baseSpeed, maxSpeed, difficulty / maxDifficulty);
-		growDuration = Mathf.Lerp(baseGrow, maxGrow, difficulty / maxDifficulty);
+		moveSpeed = Mathf.Lerp(baseSpeed, maxSpeed, difficulty / (float) maxDifficulty);
+		growDuration = Mathf.Lerp(baseGrow, maxGrow, difficulty / (float) maxDifficulty);
 		targetApples = baseApplesToEat + applePerDifficulty * difficulty;
 		StartCoroutine(AppleRoutine());
 	}

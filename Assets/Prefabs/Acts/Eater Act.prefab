@@ -51,8 +51,8 @@ MonoBehaviour:
   baseSpeed: 16
   baseGrow: 0.3
   maxDifficulty: 20
-  maxGrow: 0.08
-  maxSpeed: 64
+  maxGrow: 0.15
+  maxSpeed: 48
   baseApplesToEat: 5
   applePerDifficulty: 1
   dude: {fileID: 6111838241980994320}
