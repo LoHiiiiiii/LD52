@@ -12,6 +12,8 @@ public class RepeatAct : Act {
 	[Space]
 	[SerializeField] GameObject[] icons;
 	[SerializeField] Image bar;
+	[SerializeField] SoundHolder boop;
+	[SerializeField] SoundHolder miss;
 
 	bool active;
 	bool ended;
@@ -94,6 +96,7 @@ public class RepeatAct : Act {
 	void HandleScore() {
 		if (ended) return;
 		remainingPresses--;
+		AudioMaster.Instance.Play(boop);
 		if (remainingPresses == 0) {
 			foreach (var icon in icons) icon.SetActive(false);
 			StartCoroutine(EndRoutine(ActState.Success));
@@ -110,6 +113,7 @@ public class RepeatAct : Act {
 	}
 
 	void Fail() {
+		AudioMaster.Instance.Play(miss);
 		Shake(icons[currentIndex].transform, 0.3f, 0.8f);
 		StartCoroutine(EndRoutine(ActState.Fail));
 	}

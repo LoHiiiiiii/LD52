@@ -268,3 +268,5 @@ MonoBehaviour:
     m_RotationOrder: 4
   gun: {fileID: 5770755150247779870}
   shotTarget: {fileID: 3687149799298564727}
+  shoot: {fileID: 11400000, guid: 1391e9cc4ff49da42904d21bf3c71dc3, type: 2}
+  hitSound: {fileID: 11400000, guid: 168eaf930702e2a4c80ae783607e7880, type: 2}

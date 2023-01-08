@@ -381,6 +381,8 @@ MonoBehaviour:
   - {fileID: 784623682356532773}
   - {fileID: 2319409651807180423}
   bar: {fileID: 4698175565220270693}
+  boop: {fileID: 11400000, guid: b4dd0810184993b41912813d6195cf85, type: 2}
+  miss: {fileID: 11400000, guid: 7b8e4e0b941820e4e8dce4c9ffacf11b, type: 2}
 --- !u!1 &4470991321083983044
 GameObject:
   m_ObjectHideFlags: 0

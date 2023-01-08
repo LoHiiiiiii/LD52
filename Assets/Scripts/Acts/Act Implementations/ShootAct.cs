@@ -17,6 +17,8 @@ public class ShootAct : Act {
 	[Space]
 	[SerializeField] Transform gun;
 	[SerializeField] Transform shotTarget;
+	[SerializeField] SoundHolder shoot;
+	[SerializeField] SoundHolder hitSound;
 
 	bool active;
 	bool ended;
@@ -64,9 +66,12 @@ public class ShootAct : Act {
 	}
 
 	void Shoot() {
+		AudioMaster.Instance.Play(shoot);
 		var hit = Physics2D.Raycast(gun.position, gun.right, 100);
-		if (hit) Shake(shotTarget, 0.8f, 0.5f);
-		else Shake(gun, 0.2f, 0.3f);
+		if (hit) {
+			AudioMaster.Instance.Play(hitSound);
+			Shake(shotTarget, 0.8f, 0.5f);
+		} else Shake(gun, 0.2f, 0.3f);
 		StartCoroutine(EndRoutine(hit ? ActState.Success : ActState.Fail));
 	}
 

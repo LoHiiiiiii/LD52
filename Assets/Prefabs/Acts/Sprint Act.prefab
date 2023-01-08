@@ -451,6 +451,7 @@ MonoBehaviour:
   flagHolder: {fileID: 7620643809796465900}
   sprintDefault: {fileID: 21300000, guid: c5f90eaa849ea5043a6bbab55b731fef, type: 3}
   sprintForward: {fileID: 21300000, guid: 71f1ada4b1a5a214aa23af5ed6097586, type: 3}
+  hng: {fileID: 11400000, guid: c8f6436c766ce084e93925316bd44bb3, type: 2}
 --- !u!1 &9108580670455842623
 GameObject:
   m_ObjectHideFlags: 0

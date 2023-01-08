@@ -18,6 +18,7 @@ public class EatAct : Act {
 	[Space]
 	[SerializeField] Transform dude;
 	[SerializeField] Transform apple;
+	[SerializeField] SoundHolder nom;
 
 	int currentLane;
 
@@ -113,6 +114,7 @@ public class EatAct : Act {
 					if (Physics2D.OverlapCircle(apple.position, 0.5f)) {
 						a = 1;
 						appleCount++;
+						AudioMaster.Instance.Play(nom);
 						while (a > 0) {
 							apple.localScale = a * Vector3.one;
 							a -= Time.deltaTime / 0.2f;

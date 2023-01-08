@@ -57,6 +57,7 @@ MonoBehaviour:
   applePerDifficulty: 1
   dude: {fileID: 6111838241980994320}
   apple: {fileID: 3067755449808906474}
+  nom: {fileID: 11400000, guid: e4c274f66de6a6840a8f11aae59340fa, type: 2}
 --- !u!1 &6111838241980994321
 GameObject:
   m_ObjectHideFlags: 0

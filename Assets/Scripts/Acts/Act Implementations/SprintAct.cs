@@ -17,6 +17,7 @@ public class SprintAct : Act {
 	[Space]
 	[SerializeField] Sprite sprintDefault;
 	[SerializeField] Sprite sprintForward;
+	[SerializeField] SoundHolder hng;
 
 	bool active;
 	bool ended;
@@ -83,6 +84,7 @@ public class SprintAct : Act {
 	void HandleScore() {
 		if (ended) return;
 		remainingPresses--;
+		AudioMaster.Instance.Play(hng);
 		sprinterHolder.position = Vector3.Lerp(flagHolder.position, sprinterStartPos, remainingPresses / (float)maxPresses);
 		if (remainingPresses == 0) {
 			StartCoroutine(EndRoutine(ActState.Success));

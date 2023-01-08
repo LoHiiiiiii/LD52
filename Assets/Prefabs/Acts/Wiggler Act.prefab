@@ -692,3 +692,4 @@ MonoBehaviour:
   wigglerTwist: {fileID: 21300000, guid: 182071678db18e14bb6bdabcced36130, type: 3}
   bigArrow: {fileID: 21300000, guid: 77fba177a0aa6574eb0d87ccb71f3f43, type: 3}
   smallArrow: {fileID: 0}
+  shift: {fileID: 11400000, guid: 2749847ad3f30de44a1ee88f6cea1fce, type: 2}
