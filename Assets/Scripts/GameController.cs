@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
 	[SerializeField] ScoreScreenController scoreScreen;
 	[SerializeField] CameraController cameraController;
 	[SerializeField] int maxLives;
+	[SerializeField] VoiceLine controlMessage;
 
 	int score;
 	int lives;
@@ -30,7 +31,12 @@ public class GameController : MonoBehaviour {
 		lives = maxLives;
 		cameraController.CameraTransition(() => {
 			menu.gameObject.SetActive(false);
-			GotoNextAct();
+			messageScreen.ShowMessage(controlMessage, (Action A) => {
+				cameraController.CameraTransition(() => {
+					A();
+					GotoNextAct();
+				});
+			});
 		});
 	}
 

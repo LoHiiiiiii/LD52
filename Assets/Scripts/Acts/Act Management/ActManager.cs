@@ -11,6 +11,7 @@ public class ActManager : MonoBehaviour, IInputTarget {
 	[Space]
 	[SerializeField] int actRepeatGap;
 	[SerializeField] Act[] allActs;
+	[SerializeField] Act sleepAct;
 
 	Act currentAct;
 	Queue<Act> preventionQueue = new Queue<Act>();
@@ -22,14 +23,19 @@ public class ActManager : MonoBehaviour, IInputTarget {
 			preventionQueue.Dequeue();
 		}
 
-		var chosenActs = allActs.Where(act => !preventionQueue.Contains(act)).ToArray();
+		if (Random.value <= 0.1f && !preventionQueue.Contains(sleepAct)) {
+			currentAct = sleepAct;
+			preventionQueue.Enqueue(sleepAct);
+		} else {
+			var chosenActs = allActs.Where(act => !preventionQueue.Contains(act)).ToArray();
 
-		if (chosenActs.Length == 0) return false;
-		currentAct = chosenActs[Random.Range(0, chosenActs.Length)];
-		preventionQueue.Enqueue(currentAct);
-		inputHandler.SetTarget(this);
+			if (chosenActs.Length == 0) return false;
+			currentAct = chosenActs[Random.Range(0, chosenActs.Length)];
+			preventionQueue.Enqueue(currentAct);
+		}
 
 		Action BeginAct = () => {
+			inputHandler.SetTarget(this);
 			currentAct.BeginAct(difficulty,
 				(ActState state, Action Ended) => {
 					currentAct = null;

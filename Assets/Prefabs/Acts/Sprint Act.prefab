@@ -442,9 +442,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorial: {fileID: 11400000, guid: f504f5cdd97208344ac0c9bb8b477d8a, type: 2}
-  basePresses: 20
-  pressesPerDifficulty: 4
-  time: 6
+  basePresses: 12
+  pressesPerDifficulty: 1
+  time: 4.5
   sprinterHolder: {fileID: 1769408822900131569}
   spinterRenderer: {fileID: 9108580670455842621}
   bar: {fileID: 1230332092873919748}

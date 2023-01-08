@@ -55,10 +55,10 @@ MonoBehaviour:
   actRepeatGap: 2
   allActs:
   - {fileID: 8793456507368232698}
-  - {fileID: 7081616992044015556}
   - {fileID: 2913398962921805994}
   - {fileID: 9197399079284631641}
   - {fileID: 2092027247924392071}
+  sleepAct: {fileID: 7081616992044015556}
 --- !u!114 &6019397279132740686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,6 +79,7 @@ MonoBehaviour:
   scoreScreen: {fileID: 0}
   cameraController: {fileID: 0}
   maxLives: 3
+  controlMessage: {fileID: 11400000, guid: 6e646c196c9c4ff44a3f315a0fd2b52d, type: 2}
 --- !u!114 &436442341769722820
 MonoBehaviour:
   m_ObjectHideFlags: 0

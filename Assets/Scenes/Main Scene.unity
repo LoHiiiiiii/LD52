@@ -2721,10 +2721,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 436442340428759684, guid: 64cefdd8730e8084985c7ccba82881dd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 436442341769722821, guid: 64cefdd8730e8084985c7ccba82881dd, type: 3}
       propertyPath: m_Name
       value: Game Manager
@@ -2774,10 +2770,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 436442341769722823, guid: 64cefdd8730e8084985c7ccba82881dd, type: 3}
-      propertyPath: actRepeatGap
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 436442341769722823, guid: 64cefdd8730e8084985c7ccba82881dd, type: 3}
       propertyPath: messageHandler
       value: 
       objectReference: {fileID: 1663011296}
@@ -2789,10 +2781,6 @@ PrefabInstance:
       propertyPath: swap
       value: 
       objectReference: {fileID: 150728099}
-    - target: {fileID: 6019397279132740686, guid: 64cefdd8730e8084985c7ccba82881dd, type: 3}
-      propertyPath: failScreen
-      value: 
-      objectReference: {fileID: 1663011296}
     - target: {fileID: 6019397279132740686, guid: 64cefdd8730e8084985c7ccba82881dd, type: 3}
       propertyPath: scoreScreen
       value: 
