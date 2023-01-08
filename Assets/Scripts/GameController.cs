@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour {
 	[SerializeField] ActManager actManager;
 	[SerializeField] SwapController swap;
 	[SerializeField] MessageScreenController messageScreen;
+	[SerializeField] ScoreScreenController scoreScreen;
 	[SerializeField] int maxLives;
 
 	int score;
@@ -41,11 +42,12 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void EndGame() {
+		handler.SetTarget(scoreScreen);
+		scoreScreen.ShowScore(score, () => { swap.Transition(); GotoMenu(); });
 		if (score > PlayerPrefs.GetInt("hiscore", 0)) {
 			PlayerPrefs.SetInt("hiscore", score);
 		}
 		score = 0;
-		GotoMenu();
 	}
 
 	public void ActFinished(ActState state) {

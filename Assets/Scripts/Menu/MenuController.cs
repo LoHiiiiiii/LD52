@@ -14,11 +14,13 @@ public class MenuController : MonoBehaviour, IInputTarget {
 	int index;
 	int lastY;
 	bool lastEscape;
+	bool lastAction;
 
 	void OnEnable() {
 		index = 0;
 		lastY = 0;
 		lastEscape = true;
+		lastAction = true;
 		HandleIndicator();
 		int score = PlayerPrefs.GetInt("hiscore", 0);
 		if (score > 0) {
@@ -30,7 +32,7 @@ public class MenuController : MonoBehaviour, IInputTarget {
 	}
 
 	public void UseInput(int x, int y, bool action, bool escape) {
-		if (action) {
+		if (action && !lastAction) {
 			Press(index);
 		}
 
@@ -42,6 +44,7 @@ public class MenuController : MonoBehaviour, IInputTarget {
 		}
 		lastY = y;
 		lastEscape = escape;
+		lastAction = action;
 		HandleIndicator();
 	}
 
