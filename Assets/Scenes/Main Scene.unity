@@ -202,17 +202,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &260280367 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9197399079284631641, guid: 64cefdd8730e8084985c7ccba82881dd, type: 3}
-  m_PrefabInstance: {fileID: 436442341383563025}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fac9ea649aead6a4ba3ed6dcb84ed31d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &285470513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,7 +1550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1392963547
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1607,6 +1596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hiscore: {fileID: 2105940847}
+  title: {fileID: 1800122663}
   indicators:
   - {fileID: 1033579380}
   - {fileID: 1211251335}
@@ -2791,14 +2781,6 @@ PrefabInstance:
       propertyPath: messageHandler
       value: 
       objectReference: {fileID: 1663011296}
-    - target: {fileID: 436442341769722823, guid: 64cefdd8730e8084985c7ccba82881dd, type: 3}
-      propertyPath: allActs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 436442341769722823, guid: 64cefdd8730e8084985c7ccba82881dd, type: 3}
-      propertyPath: allActs.Array.data[0]
-      value: 
-      objectReference: {fileID: 260280367}
     - target: {fileID: 6019397279132740686, guid: 64cefdd8730e8084985c7ccba82881dd, type: 3}
       propertyPath: menu
       value: 

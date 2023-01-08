@@ -7,9 +7,12 @@ using TMPro;
 public class MenuController : MonoBehaviour, IInputTarget {
 	
 	[SerializeField] TMP_Text hiscore;
+	[SerializeField] TMP_Text title;
 	[SerializeField] GameObject[] indicators;
 
 	public event Action StartPressed;
+
+	string normalName = "Solvate Rush";
 
 	int index;
 	int lastY;
@@ -20,6 +23,7 @@ public class MenuController : MonoBehaviour, IInputTarget {
 	void OnEnable() {
 		index = 0;
 		lastY = 0;
+		title.text = normalName;
 		lastEscape = true;
 		lastAction = true;
 		HandleIndicator();
