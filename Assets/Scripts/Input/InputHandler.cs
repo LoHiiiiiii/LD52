@@ -14,10 +14,10 @@ public class InputHandler : MonoBehaviour {
 		if (currentTarget == null) return;
 
 		int x = 0, y = 0;
-		if (Input.GetKey(KeyCode.LeftArrow)) x--;
-		if (Input.GetKey(KeyCode.RightArrow)) x++;
-		if (Input.GetKey(KeyCode.DownArrow)) y--;
-		if (Input.GetKey(KeyCode.UpArrow)) y++;
+		if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A)) x--;
+		if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D)) x++;
+		if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) y--;
+		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) y++;
 
 		bool action = Input.GetKey(KeyCode.Space);
 		bool escape = Input.GetKey(KeyCode.Escape);
