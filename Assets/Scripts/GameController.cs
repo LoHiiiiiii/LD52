@@ -142,7 +142,7 @@ public class GameController : MonoBehaviour {
 	IEnumerator Final() {
 		aura.SetActive(false);
 		var sound = AudioMaster.Instance.Play(endSound);
-		while (!sound.isPlaying) {
+		while (sound.isPlaying) {
 			yield return null;
 		}
 		Application.Quit();
